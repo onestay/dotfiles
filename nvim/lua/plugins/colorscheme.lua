@@ -1,17 +1,14 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
-  lazy = false,
-  priority = 100000,
-  config = function()
-    require("catppuccin").setup({
-      flavour = "frappe",
-      integrations = {
-        notify = true,
-        neotree = true,
-        telescope = true,
-      },
-    })
-    vim.cmd.colorscheme("catppuccin")
-  end,
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    lazy = true,
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin-frappe",
+    },
+  },
 }
