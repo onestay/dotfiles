@@ -22,7 +22,7 @@ font pango:monospace 8
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id feh ~/.fehbg
+exec --no-startup-id ~/.fehbg
 exec_always --no-startup-id picom --config $HOME/.config/picom/picom.conf
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
