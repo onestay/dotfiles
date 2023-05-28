@@ -1,0 +1,38 @@
+#!/bin/bash
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+n_monitors=$(xrandr --query | grep -c " connected")
+ws_per_monitor=$((10 / n_monitors))
+monitors=$(xrandr --query | grep " connected" | cut -d" " -f1)
+integrated_monitor="eDP-1"
+# Remove "eDP1" from the array
+monitors=("${monitors[@]/$integrated_monitor}")
+
+# Add "eDP1" as the first element of the array
+monitors=("$integrated_monitor" "${monitors[@]}")
+start=1
+end=$((start+(ws_per_monitor - 1)))
+for monitor in "${monitors[@]}"; do
+    # shellcheck disable=SC2046
+    bspc monitor "$monitor" -d $(for i in $(seq ${start} ${end}); do echo "$i"; done)
+    start=$((end + 1))
+    end=$((start+(ws_per_monitor - 1)))
+done
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+~/.fehbg
+~/bin/xrandr_config.sh
+picom --config ~/.config/picom/picom.conf
+~/.config/polybar/launch.sh
