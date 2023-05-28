@@ -21,5 +21,5 @@ shell:
 env:
   TERM: xterm-256color
 import:
-  - ~/.config/alacritty/catppuccin-frappe.yml
+  - ~/.config/alacritty/catppuccin-mocha.yml
 
