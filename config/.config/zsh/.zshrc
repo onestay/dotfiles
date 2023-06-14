@@ -69,4 +69,9 @@ source $HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 source $HOME/.config/zsh/powerlevel10k/powerlevel10k.zsh-theme
+
+# keybindings
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
