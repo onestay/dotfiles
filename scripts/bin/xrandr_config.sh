@@ -12,6 +12,12 @@ if [[ $connected_monitors -eq 3 ]]; then
 fi
 
 if [[ $connected_monitors -eq 2 ]]; then
+    if [[ $(cat /etc/hostname) = "yui" ]]; then
+        ~/.screenlayout/layout.sh 
+        bspc monitor "DP-0" -d 1 2 3 4 5
+        bspc monitor "DP-2" -d 6 7 8 9 0
+        bspc wm -O "DP-0" "DP-2"
+    fi
     ~/.screenlayout/home.sh
     bspc monitor "HDMI-1" -d 6 7 8 9
     bspc monitor "eDP-1" -d 1 2 3 4 5
